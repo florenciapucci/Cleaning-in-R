@@ -6,9 +6,9 @@ library(readr)
 
 
 # Path
-path<-"J:/articulos/articulos/Cv experiment/religion"
+path<-""
 setwd(path)
-output<-"J:/articulos/articulos/Cv experiment/religion/output"
+output<-""
 
 
 # Applied ads
@@ -243,11 +243,11 @@ library(stargazer)
 library(bannerCommenter)
 
 # Path
-path<-"J:/articulos/articulos/Cv experiment/religion"
+path<-""
 setwd(path)
 
 
-output<-"J:/articulos/articulos/Cv experiment/religion/output"
+output<-""
 
 
 # Load data
@@ -487,105 +487,4 @@ data[data$group==4,] %>%
   filter(str_detect(Empresa, "rga"))
 data[data$group==4,] %>%
   filter(str_detect(Descripción, "rga"))
-
-
-
-############################### Remove this code
-
-
-
-
-##################################################################
-##                   Possible results testing                   ##
-##################################################################
-
-
-
-
-# Possible results testing
-
-# group 1 (treated): 1
-# group 2 (treated): 2
-# group 3: 1
-# group 4: 2
-# group 5 (treated): 4
-# group 6 (treated): 3
-# group 7: 2
-# group 7: 4
-
-
-
-library(tidyverse)
-
-prueba <-tibble(n = 1:2834) 
-
-prueba$x <- ifelse(prueba$n <= nrow(prueba)/2,1,0)
-
-
-# 10 del grupo tratado
-# 9 del grupo no tratado
-prueba$y2 <- ifelse(prueba$n<=10 | (prueba$n >nrow(prueba)/2 & prueba$n < nrow(prueba)/2+10),1,0)
-
-# Cantidad de callbacks a tratados
-nrow(prueba[prueba$y2==1&prueba$n<=nrow(prueba)/2,])
-
-# Cantidad de callbacks a control
-nrow(prueba[prueba$y2==1&prueba$n>nrow(prueba)/2,])
-
-
-model2 <- lm(prueba$y2~prueba$x)
-summary(model2)
-
-
-# Testing gender?
-
-
-# group 1: 1
-# group 2: 2
-# group 3: 1
-# group 4: 2
-# group 5: (treated): 4
-# group 6: (treated): 3
-# group 7: (treated): 2
-# group 7: (treated): 4
-
-
-
-library(tidyverse)
-
-prueba <-tibble(n = 1:2834) 
-
-prueba$x <- ifelse(prueba$n <= nrow(prueba)/2,1,0)
-
-
-# 13 del grupo tratado
-# 6 del grupo no tratado
-prueba$y2 <- ifelse(prueba$n<=13 | (prueba$n >nrow(prueba)/2 & prueba$n < nrow(prueba)/2+7),1,0)
-
-# Cantidad de callbacks a tratados
-nrow(prueba[prueba$y2==1&prueba$n<=nrow(prueba)/2,])
-
-# Cantidad de callbacks a control
-nrow(prueba[prueba$y2==1&prueba$n>nrow(prueba)/2,])
-
-
-model2 <- lm(prueba$y2~prueba$x)
-summary(model2)
-
-
-
-
-
-
-
-
-
-
-
-############################### Remove this code
-
-data[data$Área=="Ventas",]$Link
-
-sample(data[data$Área=="Ventas",]$Link,5)
-
 
